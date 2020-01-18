@@ -7,7 +7,6 @@ class ColorUtils {
 
   Color adaptColor(Color color) {
     var luminance = color.computeLuminance();
-    print("r: ${color.red}, g: ${color.green}, b: ${color.blue}, lum: ${luminance}, res: ${luminance > 0.5}");
 
     // logically luminance should be compared to 0.5
     // but that sometimes leads to text not being visible,

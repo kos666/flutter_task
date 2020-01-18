@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:solid_software_task/utils/ColorUtils.dart';
+import 'package:flutter_task/utils/color_utils.dart';
 
 class ContrastingText extends StatelessWidget {
   ContrastingText({this.color});
