@@ -11,7 +11,7 @@ class ColorUtils {
     // logically luminance should be compared to 0.5
     // but that sometimes leads to text not being visible,
     // not sure if it's just my eyes shenanigans
-    return luminance > 0.8 ? Colors.black : Colors.white;
+    return luminance > 0.4 ? Colors.black : Colors.white;
   }
 
   Color getRandomColor() {

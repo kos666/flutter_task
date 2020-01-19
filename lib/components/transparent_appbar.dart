@@ -1,32 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+class TransparentAppbar extends StatelessWidget implements PreferredSizeWidget {
 
-class TransparentAppbar extends StatelessWidget {
-  TransparentAppbar({this.buttonsColor});
+  const TransparentAppbar({Key key, this.height, this.buttonsColor}) : super(key: key);
 
+  final double height;
   final Color buttonsColor;
 
   @override
   Widget build(BuildContext context) {
-    return new Positioned(
-        top: 0,
-        left: 0,
-        right: 0,
-        child: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          bottomOpacity: 0,
-          leading: IconButton(
-            icon: Icon(
-                Icons.menu,
-                color: buttonsColor
-            ),
-            onPressed: () {
-              print('nice');
-            },
-          ),
-        )
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      bottomOpacity: 0,
+      leading: IconButton(
+        icon: Icon(
+            Icons.menu,
+            color: buttonsColor
+        ),
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
+        },
+      ),
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(height);
 }

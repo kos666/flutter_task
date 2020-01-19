@@ -30,16 +30,19 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     return AnimatedBuilder(
         animation: _controller,
         builder: (context, child) {
-          return Stack(
-            children: <Widget>[
-              PaintableCanvas(
-                color: _mainColor,
-                onTap: _changeColor,
-              ),
-              TransparentAppbar(
-                buttonsColor: _contrastColor,
-              ),
-            ],
+          return Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: TransparentAppbar(
+              height: 150,
+              buttonsColor: _contrastColor,
+            ),
+            body: PaintableCanvas(
+              color: _mainColor,
+              onTap: _changeColor,
+            ),
+            drawer: Drawer(
+
+            ),
           );
         }
     );

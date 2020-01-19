@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_task/utils/color_utils.dart';
 
 class ContrastingText extends StatelessWidget {
@@ -13,7 +14,13 @@ class ContrastingText extends StatelessWidget {
       "Hey there",
       style: TextStyle(
           fontSize: 48,
-          color: _colorUtils.getContrastColor(color)
+          color: _colorUtils.getContrastColor(color),
+          shadows: [
+            Shadow(
+                color: Colors.blueGrey,
+                blurRadius: 30
+            )
+          ]
         //todo use a font that isn't boring
       ),
     );
