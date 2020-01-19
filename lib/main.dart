@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/components/scene.dart';
+import 'package:flutter_task/components/home_screen.dart';
 
 void main() => runApp(MyApp());
 

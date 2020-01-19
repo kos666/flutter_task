@@ -17,9 +17,14 @@ class TransparentAppbar extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           bottomOpacity: 0,
-          leading: Icon(
-            Icons.menu,
-            color: buttonsColor,
+          leading: IconButton(
+            icon: Icon(
+                Icons.menu,
+                color: buttonsColor
+            ),
+            onPressed: () {
+              print('nice');
+            },
           ),
         )
     );

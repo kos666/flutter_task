@@ -13,7 +13,7 @@ class ContrastingText extends StatelessWidget {
       "Hey there",
       style: TextStyle(
           fontSize: 48,
-          color: _colorUtils.adaptColor(color)
+          color: _colorUtils.getContrastColor(color)
         //todo use a font that isn't boring
       ),
     );

@@ -13,44 +13,31 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   var _colorUtils = ColorUtils();
 
   Color _backgroundColor = Colors.green;
-  Color _nextColor;
 
   AnimationController _controller;
-
   Animation<Color> _animation;
 
   @override
   void initState() {
     super.initState();
-
-    _nextColor = _colorUtils.getRandomColor();
-
     _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 150));
-    _animation = ColorTween(begin: _backgroundColor, end: _nextColor)
-        .animate(_controller)
-      ..addListener(() {
-        setState(() {
-
-        });
-      });
   }
 
   @override
   Widget build(BuildContext context) {
-
+    var _mainColor = _animation?.value != null ? _animation.value : Colors.green;
+    var _contrastColor = _colorUtils.getContrastColor(_mainColor);
     return AnimatedBuilder(
         animation: _controller,
         builder: (context, child) {
           return Stack(
             children: <Widget>[
               PaintableCanvas(
-                color: _animation.value,
+                color: _mainColor,
+                onTap: _changeColor,
               ),
               TransparentAppbar(
-                buttonsColor: _colorUtils.adaptColor(_animation.value),
-              ),
-              GestureDetector(
-                onTap: _changeColor,
+                buttonsColor: _contrastColor,
               ),
             ],
           );
@@ -65,9 +52,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       _animation = ColorTween(begin: _backgroundColor, end: newColor)
           .animate(_controller)
         ..addListener(() {
-          setState(() {
-
-          });
+          setState(() {});
         });
 
       _backgroundColor = newColor;

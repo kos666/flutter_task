@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class ColorUtils {
   var _random = Random();
 
-  Color adaptColor(Color color) {
+  Color getContrastColor(Color color) {
     var luminance = color.computeLuminance();
 
     // logically luminance should be compared to 0.5
