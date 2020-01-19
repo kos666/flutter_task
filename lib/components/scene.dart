@@ -9,31 +9,69 @@ class HomeScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _HomeScreenState();
 }
 
-//todo come up with a more descriptive name
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   var _colorUtils = ColorUtils();
-  Color _backgroundColor = Colors.green;
 
-  void _changeColor() {
-    setState(() {
-      _backgroundColor = _colorUtils.getRandomColor();
-    });
+  Color _backgroundColor = Colors.green;
+  Color _nextColor;
+
+  AnimationController _controller;
+
+  Animation<Color> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _nextColor = _colorUtils.getRandomColor();
+
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 150));
+    _animation = ColorTween(begin: _backgroundColor, end: _nextColor)
+        .animate(_controller)
+      ..addListener(() {
+        setState(() {
+
+        });
+      });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        PaintableCanvas(
-            color: _backgroundColor
-        ),
-        TransparentAppbar(
-          buttonsColor: _colorUtils.adaptColor(_backgroundColor),
-        ),
-        GestureDetector(
-          onTap: _changeColor,
-        ),
-      ],
+
+    return AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Stack(
+            children: <Widget>[
+              PaintableCanvas(
+                color: _animation.value,
+              ),
+              TransparentAppbar(
+                buttonsColor: _colorUtils.adaptColor(_animation.value),
+              ),
+              GestureDetector(
+                onTap: _changeColor,
+              ),
+            ],
+          );
+        }
     );
+  }
+
+  void _changeColor() {
+    setState(() {
+      var newColor = _colorUtils.getRandomColor();
+
+      _animation = ColorTween(begin: _backgroundColor, end: newColor)
+          .animate(_controller)
+        ..addListener(() {
+          setState(() {
+
+          });
+        });
+
+      _backgroundColor = newColor;
+      _controller.forward(from: 0);
+    });
   }
 }
