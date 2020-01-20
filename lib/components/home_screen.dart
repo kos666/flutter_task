@@ -12,7 +12,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   var _colorUtils = ColorUtils();
 
-  Color _backgroundColor = Colors.green;
+//  Color _backgroundColor = Colors.green;
+  List<Color> _pastColors = [Colors.green];
 
   AnimationController _controller;
   Animation<Color> _animation;
@@ -33,32 +34,48 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           return Scaffold(
             extendBodyBehindAppBar: true,
             appBar: TransparentAppbar(
-              height: 150,
+              height: 65,
               buttonsColor: _contrastColor,
             ),
             body: PaintableCanvas(
               color: _mainColor,
-              onTap: _changeColor,
+              onTap: () {
+                _changeColor(_colorUtils.getRandomColor());
+              },
             ),
             drawer: Drawer(
-
+              child: ListView.builder(
+                itemCount: _pastColors.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    color: _pastColors[index],
+                    child: ListTile(
+                      onTap: () {
+                        _changeColor(_pastColors[index]);
+                        Navigator.pop(context);
+                      },
+                    ),
+                  );
+                },
+              ),
             ),
           );
         }
     );
   }
 
-  void _changeColor() {
+  void _changeColor(Color newColor) {
     setState(() {
-      var newColor = _colorUtils.getRandomColor();
+//      var newColor = _colorUtils.getRandomColor();
 
-      _animation = ColorTween(begin: _backgroundColor, end: newColor)
+      _animation = ColorTween(begin: _pastColors.last, end: newColor)
           .animate(_controller)
         ..addListener(() {
           setState(() {});
         });
 
-      _backgroundColor = newColor;
+      _pastColors.add(newColor);
+//      _backgroundColor = newColor;
       _controller.forward(from: 0);
     });
   }
