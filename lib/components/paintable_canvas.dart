@@ -17,6 +17,7 @@ class PaintableCanvas extends StatelessWidget {
         children: <Widget>[
           Center(
             child: ContrastingText(
+              data: "Hey there",
               color: color,
             ),
           ),

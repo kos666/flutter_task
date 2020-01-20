@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_task/utils/color_utils.dart';
 
 class ContrastingText extends StatelessWidget {
-  ContrastingText({this.color});
+  ContrastingText({this.color, this.data});
 
+  final String data;
   final Color color;
   final ColorUtils _colorUtils = ColorUtils();
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Hey there",
+      data,
       style: TextStyle(
           fontSize: 48,
           color: _colorUtils.getContrastColor(color),
@@ -21,7 +22,6 @@ class ContrastingText extends StatelessWidget {
                 blurRadius: 30
             )
           ]
-        //todo use a font that isn't boring
       ),
     );
   }
