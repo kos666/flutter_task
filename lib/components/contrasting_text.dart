@@ -1,20 +1,27 @@
 import 'package:flutter/cupertino.dart';
-import 'package:solid_software_task/utils/ColorUtils.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_task/utils/color_utils.dart';
 
 class ContrastingText extends StatelessWidget {
-  ContrastingText({this.color});
+  ContrastingText({this.color, this.data});
 
+  final String data;
   final Color color;
   final ColorUtils _colorUtils = ColorUtils();
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Hey there",
+      data,
       style: TextStyle(
           fontSize: 48,
-          color: _colorUtils.adaptColor(color)
-        //todo use a font that isn't boring
+          color: _colorUtils.getContrastColor(color),
+          shadows: [
+            Shadow(
+                color: Colors.blueGrey,
+                blurRadius: 30
+            )
+          ]
       ),
     );
   }

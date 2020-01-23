@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.kotenko.solid_software_task">
+    package="dev.kotenko.flutter_task">
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
          In most cases you can leave this as-is, but you if you want to provide
@@ -7,7 +7,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="solid_software_task"
+        android:label="flutter_task"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

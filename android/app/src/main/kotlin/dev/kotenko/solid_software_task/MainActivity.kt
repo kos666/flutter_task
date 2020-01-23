@@ -1,4 +1,4 @@
-package dev.kotenko.solid_software_task
+package dev.kotenko.flutter_task
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
