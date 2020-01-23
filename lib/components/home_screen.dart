@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_task/components/color_history_drawer.dart';
 import 'package:flutter_task/components/paintable_canvas.dart';
 import 'package:flutter_task/components/transparent_appbar.dart';
 import 'package:flutter_task/utils/color_utils.dart';
@@ -51,29 +52,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             );
           }
       ),
-      drawer: Drawer(
-        child: ListView.builder(
-          itemCount: _pastColors.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-              color: _pastColors.elementAt(index),
-              child: ListTile(
-                onTap: () {
-                  var _tappedColor = _pastColors.elementAt(index);
-                  _pastColors.remove(_tappedColor);
-                  _changeColor(_tappedColor);
-                  Navigator.pop(context);
-                },
-              ),
-            );
-          },
-        ),
-      ),
+      drawer: ColorHistoryDrawer(colors: _pastColors, onColorSelection: _changeColor,)
     );
   }
 
   void _changeColor(Color newColor) {
-    print(DateTime.now().millisecondsSinceEpoch);
     setState(() {
       _animation = ColorTween(begin: _pastColors.last, end: newColor)
           .animate(_controller);

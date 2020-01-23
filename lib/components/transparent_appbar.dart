@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TransparentAppbar extends StatelessWidget implements PreferredSizeWidget {
-
-  const TransparentAppbar({Key key, this.height, this.buttonsColor}) : super(key: key);
+  TransparentAppbar({this.height, this.buttonsColor});
 
   final double height;
   final Color buttonsColor;
